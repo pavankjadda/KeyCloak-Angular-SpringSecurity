@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import * as Keycloak from "keycloak-js";
+import {KeycloakInstance} from "keycloak-js";
 
 @Injectable({
   providedIn: 'root'
 })
 export class KeycloakService
 {
-  private keycloakAuth: any;
+  private keycloakAuth: KeycloakInstance;
 
   constructor()
   {
@@ -38,5 +39,15 @@ export class KeycloakService
   getToken(): string
   {
     return this.keycloakAuth.token;
+  }
+
+  logout()
+  {
+    const options = {
+      'redirectUri': 'http://localhost:4200',
+      'realm': 'nci',
+      'clientId': 'angular-app'
+    };
+    this.keycloakAuth.logout(options);
   }
 }

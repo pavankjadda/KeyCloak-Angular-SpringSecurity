@@ -1,16 +1,16 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {CategoryListComponent} from "./category-list/category-list.component";
 import {EmployeeListComponent} from "./employee-list/employee-list.component";
+import {LogoutComponent} from "./logout/logout.component";
 
 const routes: Routes = [
   {
-    path: 'category/list',
-    component: CategoryListComponent
-  },
-  {
     path: 'employee/list',
     component: EmployeeListComponent
+  },
+  {
+    path: 'logout',
+    component:LogoutComponent
   },
 ];
 

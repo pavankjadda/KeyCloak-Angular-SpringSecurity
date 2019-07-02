@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {KeycloakService} from "../keycloak/keycloak.service";
 import {Employee} from "./employee";
 import {EmployeeService} from "./employee.service";
 
@@ -11,7 +12,8 @@ export class EmployeeListComponent implements OnInit
 {
   employees: Array<Employee>;
 
-  constructor(private employeeService:EmployeeService) { }
+  constructor(private employeeService:EmployeeService,
+              private keycloakService:KeycloakService) { }
 
   ngOnInit()
   {
@@ -26,5 +28,10 @@ export class EmployeeListComponent implements OnInit
         this.employees=data;
       }
     );
+  }
+
+  logout()
+  {
+    this.keycloakService.logout();
   }
 }

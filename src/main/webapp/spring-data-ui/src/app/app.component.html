@@ -1,13 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div style="text-align:center" class="container container-fluid">
   <h1>
     Welcome to {{ title }}!
   </h1>
+
+  <ul>
+    <li>
+      <h2><a [routerLink]="['/employee/list']">Employees</a></h2>
+    </li>
+  </ul>
 </div>
-<ul>
-  <li>
-    <h2><a [routerLink]="['/employee/list']">Employees</a></h2>
-  </li>
-</ul>
 
 <router-outlet></router-outlet>

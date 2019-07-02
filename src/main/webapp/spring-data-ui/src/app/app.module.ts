@@ -7,6 +7,7 @@ import {AppComponent} from "./app.component";
 import {EmployeeListComponent} from "./employee-list/employee-list.component";
 import {TokenInterceptor} from "./interceptors/token-interceptor";
 import {KeycloakService} from "./keycloak/keycloak.service";
+import {LogoutComponent} from "./logout/logout.component";
 
 export function kcFactory(keycloakService: KeycloakService) {
   return () => keycloakService.init();
@@ -14,7 +15,8 @@ export function kcFactory(keycloakService: KeycloakService) {
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

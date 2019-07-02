@@ -1,9 +1,26 @@
-<div class="">
-  <div *ngFor="let employee of employees" >
-    <p>{{employee.id}}</p>
-    <p>{{employee.firstName}}</p>
-    <p>{{employee.lastName}}</p>
-    <p>{{employee.email}}</p>
-    <p>{{employee.phone}}</p>
-  </div>
+<div class="container container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let employee of employees" >
+      <tr>
+        <td>{{employee.id}}</td>
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastName}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.phone}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br/>
+  <h2><a [routerLink]="['/logout']">Logout</a></h2>
 </div>
+
