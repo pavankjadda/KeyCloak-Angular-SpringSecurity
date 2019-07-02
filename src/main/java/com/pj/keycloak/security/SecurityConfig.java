@@ -62,6 +62,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 
         http.cors();
     }
+
     //Cors filter to accept incoming requests
     @Bean
     CorsConfigurationSource corsConfigurationSource()
@@ -75,14 +76,4 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         return source;
     }
 
-/*    public WebMvcConfigurer corsConfigurer()
-    {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry)
-            {
-                registry.addMapping("/api/*").allowedOrigins("http://localhost:4200");
-            }
-        };
-    }*/
 }
