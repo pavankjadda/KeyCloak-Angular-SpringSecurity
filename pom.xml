@@ -33,8 +33,9 @@
         </dependency>
 
         <dependency>
-             <groupId>org.keycloak</groupId>
-             <artifactId>keycloak-spring-boot-starter</artifactId>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-spring-boot-starter</artifactId>
+            <version>6.0.1</version>
         </dependency>
 
         <dependency>
@@ -75,7 +76,7 @@
             <dependency>
                 <groupId>org.keycloak.bom</groupId>
                 <artifactId>keycloak-adapter-bom</artifactId>
-                <version>3.3.0.Final</version>
+                <version>6.0.1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

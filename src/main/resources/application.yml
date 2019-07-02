@@ -2,11 +2,13 @@
 server:
   port: 8081
 
+#Keycloak Properties
 keycloak:
   auth-server-url: http://localhost:8080/auth
   realm: nci
-  resource: angular-app
+  resource: spring-boot-app
   public-client: true
+  principal-attribute: preferred_username
 
 #Spring Properties
 
