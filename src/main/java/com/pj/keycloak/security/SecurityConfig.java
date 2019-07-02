@@ -50,7 +50,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 
         http.authorizeRequests()
                 .antMatchers("/api/**")
-                .hasAnyRole(Role.ADMIN)
+                .hasAnyRole(Roles.ADMIN)
                 .anyRequest()
                 .permitAll();
     }

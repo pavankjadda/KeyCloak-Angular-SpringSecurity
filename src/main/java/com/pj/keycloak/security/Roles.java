@@ -1,10 +1,10 @@
 package com.pj.keycloak.security;
 
-class Role
+class Roles
 {
     static final String ADMIN="admin";
 
-    private Role()
+    private Roles()
     {
 
     }
