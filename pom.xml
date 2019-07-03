@@ -11,7 +11,7 @@
     <groupId>com.pj</groupId>
     <artifactId>keycloak</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>KeyCloak-SpringSecurity</name>
+    <name>KeyCloak-Angular-SpringSecurity</name>
     <description>Demo project for KeyCloak-SpringSecurity</description>
 
     <properties>
