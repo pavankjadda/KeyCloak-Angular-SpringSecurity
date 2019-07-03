@@ -6,7 +6,7 @@ server:
 keycloak:
   auth-server-url: http://localhost:8080/auth
   realm: nci
-  resource: spring-boot-app
+  resource: angular-app
   public-client: true
   principal-attribute: preferred_username
 
