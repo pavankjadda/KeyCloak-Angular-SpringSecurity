@@ -2,6 +2,7 @@ package com.pj.keycloak.web;
 
 import com.pj.keycloak.model.Employee;
 import com.pj.keycloak.service.EmployeeService;
+import com.pj.keycloak.util.UserInfoUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +16,18 @@ import java.util.Optional;
 public class EmployeeController
 {
     private final EmployeeService employeeService;
+    private final UserInfoUtil userInfoUtil;
 
-    public EmployeeController(EmployeeService employeeService)
+    public EmployeeController(EmployeeService employeeService, UserInfoUtil userInfoUtil)
     {
         this.employeeService = employeeService;
+        this.userInfoUtil = userInfoUtil;
     }
 
     @GetMapping(path = "/list")
     public List<Employee> findAll()
     {
+        System.out.println("User Id: "+userInfoUtil.getUserId());
         return employeeService.findAll();
     }
 
