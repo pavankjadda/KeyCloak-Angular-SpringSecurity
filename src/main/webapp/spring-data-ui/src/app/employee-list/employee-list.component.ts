@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {NgxSpinnerService} from "ngx-spinner";
 import {KeycloakService} from "../keycloak/keycloak.service";
 import {Employee} from "./employee";
 import {EmployeeService} from "./employee.service";
@@ -13,7 +14,8 @@ export class EmployeeListComponent implements OnInit
   employees: Array<Employee>;
 
   constructor(private employeeService:EmployeeService,
-              private keycloakService:KeycloakService) { }
+              private keycloakService:KeycloakService,
+              private ngxSpinnerService:NgxSpinnerService) { }
 
   ngOnInit()
   {
@@ -22,10 +24,16 @@ export class EmployeeListComponent implements OnInit
 
   private getEmployees()
   {
-
+    this.ngxSpinnerService.show();
     this.employeeService.getEmployees('http://localhost:8081/api/v1/employee/list').subscribe(
-      data=> {
+      data=>
+      {
         this.employees=data;
+        this.ngxSpinnerService.hide();
+      },
+      error1 =>
+      {
+        this.ngxSpinnerService.hide();
       }
     );
   }

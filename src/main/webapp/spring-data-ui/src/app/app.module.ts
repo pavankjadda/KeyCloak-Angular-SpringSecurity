@@ -1,6 +1,7 @@
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {APP_INITIALIZER, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -21,7 +22,8 @@ export function kcFactory(keycloakService: KeycloakService) {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [KeycloakService,
     {
