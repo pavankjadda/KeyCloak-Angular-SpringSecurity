@@ -1,0 +1,38 @@
+# Server properties
+server:
+  port: 8081
+
+#Keycloak Properties
+keycloak:
+  auth-server-url: http://localhost:8080/auth
+  realm: keycloakdemo
+  resource: angular-app
+  public-client: true
+  principal-attribute: preferred_username
+
+
+
+#Spring Properties
+spring:
+  application:
+    name: SpringSecurity-Data-Application
+
+  # Jpa Properties
+  datasource:
+    url: jdbc:mysql://localhost:3306/keycloak-springsecurity?serverTimezone=UTC
+    username: root
+    password: bcmc1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        ddl-auto: update
+        show_sql: true
+
+  # Spring Session properties
+
+  devtools:
+    restart:
+      enabled: true

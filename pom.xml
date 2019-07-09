@@ -83,6 +83,39 @@
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <jdbc.url>jdbc:mysql://localhost:3306/keycloak-springsecurity?serverTimezone=UTC</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>bcmc1234</jdbc.password>
+                <jdbc.driver>com.mysql.cj.jdbc.Driver</jdbc.driver>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <jdbc.url>jdbc:mysql://localhost:3306/keycloak-springsecurity?serverTimezone=UTC</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>bcmc1234</jdbc.password>
+                <jdbc.driver>com.mysql.cj.jdbc.Driver</jdbc.driver>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <jdbc.url>jdbc:mysql://localhost:3306/keycloak-springsecurity?serverTimezone=UTC</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>bcmc1234</jdbc.password>
+                <jdbc.driver>com.mysql.cj.jdbc.Driver</jdbc.driver>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
