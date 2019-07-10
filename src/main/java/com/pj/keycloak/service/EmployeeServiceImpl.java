@@ -28,4 +28,16 @@ public class EmployeeServiceImpl implements EmployeeService
     {
         return employeeRepository.findById(id);
     }
+
+    @Override
+    public Employee updateProfile(Employee employee)
+    {
+        employee.setFirstName("John2");
+        employee.setLastName("Doe2");
+        employee.setPhone("54541151515");
+        employee.setEmail("John@test.com");
+        employee.setLocation("Fairfax");
+
+        return employeeRepository.saveAndFlush(employee);
+    }
 }

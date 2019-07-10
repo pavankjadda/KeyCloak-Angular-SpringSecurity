@@ -10,4 +10,6 @@ public interface EmployeeService
     List<Employee> findAll();
 
     Optional<Employee> findById(Long id);
+
+    Employee updateProfile(Employee employee);
 }

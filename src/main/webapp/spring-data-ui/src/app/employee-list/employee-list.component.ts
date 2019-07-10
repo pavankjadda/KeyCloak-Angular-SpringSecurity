@@ -38,6 +38,22 @@ export class EmployeeListComponent implements OnInit
     );
   }
 
+  updateEmployee()
+  {
+    this.ngxSpinnerService.show();
+    this.employeeService.updateEmployee('http://localhost:8081/api/v1/employee/update').subscribe(
+      data=>
+      {
+        this.employees=data;
+        this.ngxSpinnerService.hide();
+      },
+      error1 =>
+      {
+        this.ngxSpinnerService.hide();
+      }
+    );
+  }
+
   logout()
   {
     this.keycloakService.logout();

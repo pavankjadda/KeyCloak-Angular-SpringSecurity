@@ -21,13 +21,14 @@ public class UserInfoUtil
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         KeycloakPrincipal keycloakPrincipal= (KeycloakPrincipal) authentication.getPrincipal();
         AccessToken accessToken=keycloakPrincipal.getKeycloakSecurityContext().getToken();
-/*
+        /*
 
-        KeycloakAuthenticationToken keycloakAuthenticationToken= (KeycloakAuthenticationToken) httpServletRequest.getUserPrincipal();
-        logger.info("Subject: {}",keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken().getSubject());
-*/
+                KeycloakAuthenticationToken keycloakAuthenticationToken= (KeycloakAuthenticationToken) httpServletRequest.getUserPrincipal();
+                logger.info("Subject: {}",keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken().getSubject());
+        */
 
         logger.info("getUserPrincipal(): {}",httpServletRequest.getUserPrincipal());
+        logger.info("User GUID: {}",accessToken.getSubject());
 
         return accessToken.getPreferredUsername();
     }

@@ -34,12 +34,20 @@ public class EmployeeController
     public List<Employee> findAll(HttpServletRequest httpServletRequest)
     {
         logger.info("User Id: {}",userInfoUtil.getPreferredUsername(httpServletRequest));
-        return employeeService.findAll();
+        List<Employee> employees=employeeService.findAll();
+        logger.info("Employee: {}",employees.get(0));
+        return employees;
     }
 
     @GetMapping(path = "/find/{id}")
     public Optional<Employee> findById(@PathVariable Long id)
     {
         return employeeService.findById(id);
+    }
+
+    @GetMapping(path = "/update")
+    public Employee update()
+    {
+        return employeeService.updateProfile(findById(1001L).get());
     }
 }

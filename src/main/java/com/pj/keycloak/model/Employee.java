@@ -3,7 +3,9 @@ package com.pj.keycloak.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,26 +13,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "employee")
 @Data
-public class Employee implements Serializable
+public class Employee extends UserProfile implements Serializable
 {
     private static final long serialVersionUID = -2482579485413606056L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "employee_id")
+    private Long employeeId;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "location")
+    private String location;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone")
-    private String phone;
-
+    @Column(name = "salary")
+    private Double salary;
 
     @Override
     public boolean equals(Object o)
@@ -39,13 +33,15 @@ public class Employee implements Serializable
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
+        if (!super.equals(o))
+            return false;
         Employee employee = (Employee) o;
-        return getId().equals(employee.getId());
+        return getEmployeeId().equals(employee.getEmployeeId());
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getId());
+        return Objects.hash(super.hashCode(), getEmployeeId());
     }
 }

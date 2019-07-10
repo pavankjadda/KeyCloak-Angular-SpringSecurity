@@ -1,8 +1,8 @@
-export interface Employee
+import {UserProfile} from "./user-profile";
+
+export class Employee extends UserProfile
 {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
+  employeeId: number;
+  location: string;
+  salary: string;
 }
