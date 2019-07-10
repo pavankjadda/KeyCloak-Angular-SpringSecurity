@@ -1,0 +1,36 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" color="#fff" size="medium" type="ball-scale-multiple">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<div class="container container-fluid">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">EmployeeId</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Project Name</th>
+      <th scope="col">Project Location</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let employeeProject of employeeProjects" >
+    <tr>
+      <td>{{employeeProject.employeeId}}</td>
+      <td>{{employeeProject.firstName}}</td>
+      <td>{{employeeProject.lastName}}</td>
+      <td>${{employeeProject.salary}}</td>
+      <td>{{employeeProject.projectName}}</td>
+      <td>{{employeeProject.projectLocation}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <br/>
+  <div class="container container-fluid">
+    <h5>
+      <button class="btn btn-primary" [routerLink]="['/']">Back</button>
+    </h5>
+  </div>
+
+</div>
+

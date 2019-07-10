@@ -6,6 +6,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
 import {EmployeeListComponent} from "./employee-list/employee-list.component";
+import {EmployeeProjectComponent} from "./employee-project/employee-project.component";
 import {TokenInterceptor} from "./interceptors/token-interceptor";
 import {KeycloakService} from "./keycloak/keycloak.service";
 import {LogoutComponent} from "./logout/logout.component";
@@ -17,7 +18,8 @@ export function kcFactory(keycloakService: KeycloakService) {
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    LogoutComponent
+    LogoutComponent,
+    EmployeeProjectComponent
   ],
   imports: [
     BrowserModule,

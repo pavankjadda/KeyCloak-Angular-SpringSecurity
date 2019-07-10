@@ -3,11 +3,11 @@ package com.pj.keycloak.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -25,6 +25,13 @@ public class Employee extends UserProfile implements Serializable
 
     @Column(name = "salary")
     private Double salary;
+
+    @ManyToMany
+    @JoinTable(name = "employee_project",
+            joinColumns = @JoinColumn(name = "employee_id",referencedColumnName = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"))
+    private Set<Project> projects=new HashSet<>();
+
 
     @Override
     public boolean equals(Object o)
