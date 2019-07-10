@@ -31,7 +31,15 @@
   </table>
   <br/>
   <div class="container container-fluid">
-    <h5><a [routerLink]="updateEmployee()">Update</a></h5>
+    <h5>
+      <button class="btn btn-primary" (click)="createEmployee()"> Create</button>
+    </h5>
+  </div>
+
+  <div class="container container-fluid">
+    <h5>
+      <button class="btn btn-primary" (click)="updateEmployee()"> Update</button>
+    </h5>
   </div>
 </div>
 

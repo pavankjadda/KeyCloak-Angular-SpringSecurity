@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1/employee")
@@ -35,7 +36,6 @@ public class EmployeeController
     {
         logger.info("User Id: {}",userInfoUtil.getPreferredUsername(httpServletRequest));
         List<Employee> employees=employeeService.findAll();
-        logger.info("Employee: {}",employees.get(0));
         return employees;
     }
 
@@ -45,9 +45,41 @@ public class EmployeeController
         return employeeService.findById(id);
     }
 
-    @GetMapping(path = "/update")
-    public Employee update()
+    @GetMapping(path = "/update/{id}")
+    public List<Employee> update(@PathVariable Long id)
     {
-        return employeeService.updateProfile(findById(1001L).get());
+        employeeService.updateProfile(findById(id).get());
+        return employeeService.findAll();
+    }
+
+    @GetMapping(path = "/create")
+    public List<Employee> create()
+    {
+        Employee employee=new Employee();
+        employee.setFirstName(generateString());
+        employee.setLastName(generateString());
+        employee.setEmail(generateString());
+        employee.setSalary(new Random().nextDouble()*10000000);
+        employee.setEmployeeId((long) new Random().nextInt(999999));
+        employee.setUserGuid(generateString());
+        employee.setLocation(generateString());
+        employeeService.saveAndFlush(employee);
+
+        return employeeService.findAll();
+    }
+
+    private String generateString()
+    {
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++)
+        {
+            int randomLimitedInt = leftLimit + (int) (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        return buffer.toString();
     }
 }

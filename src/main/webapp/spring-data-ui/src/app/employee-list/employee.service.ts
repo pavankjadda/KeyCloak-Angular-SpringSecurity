@@ -18,4 +18,9 @@ export class EmployeeService {
   {
     return this.httpClient.get<Employee[]>(url);
   }
+
+  createEmployee(url: string)
+  {
+    return this.httpClient.get<Employee[]>(url);
+  }
 }

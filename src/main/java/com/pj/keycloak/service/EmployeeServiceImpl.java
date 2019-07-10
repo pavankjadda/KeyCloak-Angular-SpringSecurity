@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService
     }
 
     @Override
-    public Employee updateProfile(Employee employee)
+    public void updateProfile(Employee employee)
     {
         employee.setFirstName("John2");
         employee.setLastName("Doe2");
@@ -38,6 +38,12 @@ public class EmployeeServiceImpl implements EmployeeService
         employee.setEmail("John@test.com");
         employee.setLocation("Fairfax");
 
-        return employeeRepository.saveAndFlush(employee);
+        employeeRepository.saveAndFlush(employee);
+    }
+
+    @Override
+    public void saveAndFlush(Employee employee)
+    {
+        employeeRepository.saveAndFlush(employee);
     }
 }
