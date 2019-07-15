@@ -14,6 +14,7 @@
       <th scope="col">Phone</th>
       <th scope="col">Salary</th>
       <th scope="col">Location</th>
+      <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody *ngFor="let employee of employees">
@@ -26,6 +27,7 @@
       <td>{{employee.phone}}</td>
       <td>${{employee.salary}}</td>
       <td>{{employee.location}}</td>
+      <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button></td>
     </tr>
     </tbody>
   </table>

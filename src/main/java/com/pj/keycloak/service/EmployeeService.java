@@ -14,4 +14,6 @@ public interface EmployeeService
     void updateProfile(Employee employee);
 
     void saveAndFlush(Employee employee);
+
+    void deleteById(Long id);
 }

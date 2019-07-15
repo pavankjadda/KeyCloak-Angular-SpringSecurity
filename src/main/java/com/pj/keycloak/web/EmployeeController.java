@@ -5,10 +5,7 @@ import com.pj.keycloak.service.EmployeeService;
 import com.pj.keycloak.util.UserInfoUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -35,8 +32,7 @@ public class EmployeeController
     public List<Employee> findAll(HttpServletRequest httpServletRequest)
     {
         logger.info("User Id: {}",userInfoUtil.getPreferredUsername(httpServletRequest));
-        List<Employee> employees=employeeService.findAll();
-        return employees;
+        return employeeService.findAll();
     }
 
     @GetMapping(path = "/find/{id}")
@@ -52,20 +48,20 @@ public class EmployeeController
         return employeeService.findAll();
     }
 
-    @GetMapping(path = "/create")
-    public List<Employee> create()
+    @PostMapping(path = "/create")
+    public List<Employee> create(@RequestBody Employee employee)
     {
-        Employee employee=new Employee();
-        employee.setFirstName(generateString());
-        employee.setLastName(generateString());
-        employee.setEmail(generateString());
-        employee.setSalary(new Random().nextDouble()*10000000);
         employee.setEmployeeId((long) new Random().nextInt(999999));
         employee.setUserGuid(generateString());
-        employee.setLocation(generateString());
         employeeService.saveAndFlush(employee);
 
         return employeeService.findAll();
+    }
+
+    @DeleteMapping(path = "/delete/{id}")
+    public void deleteEmployee(@PathVariable Long id)
+    {
+        employeeService.deleteById(id);
     }
 
     private String generateString()
