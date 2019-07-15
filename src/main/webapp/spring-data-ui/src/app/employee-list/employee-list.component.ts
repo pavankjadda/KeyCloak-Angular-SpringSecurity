@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 import {KeycloakService} from "../keycloak/keycloak.service";
 import {Employee} from "./employee";
@@ -15,7 +16,9 @@ export class EmployeeListComponent implements OnInit
 
   constructor(private employeeService:EmployeeService,
               private keycloakService:KeycloakService,
-              private ngxSpinnerService:NgxSpinnerService) { }
+              private ngxSpinnerService:NgxSpinnerService,
+              private router:Router)
+  { }
 
   ngOnInit()
   {
@@ -90,7 +93,7 @@ export class EmployeeListComponent implements OnInit
     this.employeeService.deleteEmployee('http://localhost:8081/api/v1/employee/delete/'+id).subscribe(
       data=>
       {
-        this.ngxSpinnerService.hide();
+        this.getEmployees();
       },
       error1 =>
       {
