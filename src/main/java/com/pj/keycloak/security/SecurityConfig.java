@@ -56,11 +56,12 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
 
         http.authorizeRequests()
                 .antMatchers("/api/**")
-                .hasAnyRole(Roles.ADMIN)
+                .hasAnyAuthority(Roles.ROLE_ADMIN)
                 .anyRequest()
                 .permitAll();
 
         http.cors();
+        http.csrf().disable();
     }
 
     //Cors filter to accept incoming requests
