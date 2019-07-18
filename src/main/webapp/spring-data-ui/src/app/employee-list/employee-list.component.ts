@@ -101,4 +101,9 @@ export class EmployeeListComponent implements OnInit
       }
     );
   }
+
+  editEmployee(id: number)
+  {
+    
+  }
 }

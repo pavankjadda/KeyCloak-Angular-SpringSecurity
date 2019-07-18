@@ -14,12 +14,12 @@
       <th scope="col">Phone</th>
       <th scope="col">Salary</th>
       <th scope="col">Location</th>
-      <th scope="col">Action</th>
+      <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody *ngFor="let employee of employees">
     <tr>
-      <td>{{employee.id}}</td>
+      <td> <a routerLink="/employee/{{employee.id}}">{{employee.id}}</a></td>
       <td>{{employee.employeeId}}</td>
       <td>{{employee.firstName}}</td>
       <td>{{employee.lastName}}</td>
@@ -27,7 +27,10 @@
       <td>{{employee.phone}}</td>
       <td>${{employee.salary}}</td>
       <td>{{employee.location}}</td>
-      <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button></td>
+      <td>
+        <button (click)="editEmployee(employee.id)" class="btn btn-primary" style="margin-right: 10px">Edit</button>
+        <button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
+      </td>
     </tr>
     </tbody>
   </table>
