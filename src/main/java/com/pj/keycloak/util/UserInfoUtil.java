@@ -26,10 +26,6 @@ public class UserInfoUtil
                 KeycloakAuthenticationToken keycloakAuthenticationToken= (KeycloakAuthenticationToken) httpServletRequest.getUserPrincipal();
                 logger.info("Subject: {}",keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken().getSubject());
         */
-
-        logger.info("getUserPrincipal(): {}",httpServletRequest.getUserPrincipal());
-        logger.info("User GUID: {}",accessToken.getSubject());
-
         return accessToken.getPreferredUsername();
     }
 }

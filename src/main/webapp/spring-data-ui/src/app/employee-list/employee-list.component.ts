@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 import {KeycloakService} from "../keycloak/keycloak.service";
 import {Employee} from "./employee";
@@ -15,7 +16,9 @@ export class EmployeeListComponent implements OnInit
 
   constructor(private employeeService:EmployeeService,
               private keycloakService:KeycloakService,
-              private ngxSpinnerService:NgxSpinnerService) { }
+              private ngxSpinnerService:NgxSpinnerService,
+              private router:Router)
+  { }
 
   ngOnInit()
   {
@@ -62,11 +65,35 @@ export class EmployeeListComponent implements OnInit
   createEmployee()
   {
     this.ngxSpinnerService.show();
-    this.employeeService.createEmployee('http://localhost:8081/api/v1/employee/create').subscribe(
+    let employee=new Employee();
+    employee.employeeId=1001;
+    employee.location='Falls Church';
+    employee.salary=200000;
+    employee.email='jdoe@hj.cim';
+    employee.firstName='John';
+    employee.lastName='Doe';
+    employee.phone='202-345-2333';
+
+
+    this.employeeService.createEmployee('http://localhost:8081/api/v1/employee/create',employee).subscribe(
       data=>
       {
         this.employees=data;
         this.ngxSpinnerService.hide();
+      },
+      error1 =>
+      {
+        this.ngxSpinnerService.hide();
+      }
+    );
+  }
+
+  deleteEmployee(id: number)
+  {
+    this.employeeService.deleteEmployee('http://localhost:8081/api/v1/employee/delete/'+id).subscribe(
+      data=>
+      {
+        this.getEmployees();
       },
       error1 =>
       {
