@@ -55,8 +55,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter
         super.configure(http);
 
         http.authorizeRequests()
-                .antMatchers("/api/**")
-                .hasAnyAuthority(Roles.ROLE_ADMIN)
+                //.antMatchers("/api/**").hasAnyAuthority(Roles.ROLE_ADMIN)
+                .antMatchers("/api/**").permitAll()
                 .anyRequest()
                 .permitAll();
 
