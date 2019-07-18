@@ -18,9 +18,10 @@ export class EmployeeService {
   {
     return this.httpClient.get<Employee>(url);
   }
-  updateEmployee(url: string)
+
+  updateEmployee(url: string, employee: Employee)
   {
-    return this.httpClient.get<Employee[]>(url);
+    return this.httpClient.post<Employee>(url,employee);
   }
 
   createEmployee(url: string, employee: Employee)

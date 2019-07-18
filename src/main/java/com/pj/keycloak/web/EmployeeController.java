@@ -41,11 +41,10 @@ public class EmployeeController
         return employeeService.findById(id);
     }
 
-    @GetMapping(path = "/update/{id}")
-    public List<Employee> update(@PathVariable Long id)
+    @PostMapping(path = "/update")
+    public Employee update(@RequestBody Employee employee)
     {
-        employeeService.updateProfile(findById(id).get());
-        return employeeService.findAll();
+        return employeeService.updateProfile(employee);
     }
 
     @PostMapping(path = "/create")

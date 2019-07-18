@@ -9,7 +9,7 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="id">Id</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" formControlName="id" id="id" readonly type="text">
+          <input [ngClass]="(editMode==true)?'form-control':'form-control-plaintext'" formControlName="id" id="id" [readOnly]="!editMode" type="text">
         </div>
       </div>
       <div class="form-group row">
@@ -22,42 +22,42 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="firstName">firstName</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" formControlName="firstName" id="firstName" readonly type="text">
+          <input [ngClass]="(editMode==true)?'form-control':'form-control-plaintext'" formControlName="firstName" id="firstName" [readOnly]="!editMode" type="text">
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="lastName">lastName</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" formControlName="lastName" id="lastName" readonly type="text">
+          <input [ngClass]="(editMode==true)?'form-control':'form-control-plaintext'" formControlName="lastName" id="lastName"  [readOnly]="!editMode"  type="text">
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="email">Email</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" id="email" formControlName="email"  readonly type="text">
+          <input [ngClass]="(editMode==true)?'form-control':'form-control-plaintext'" id="email" formControlName="email"   [readOnly]="!editMode"  type="text">
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="phone">phone</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" id="phone" formControlName="phone"  readonly type="text">
+          <input [ngClass]="(editMode==true)?'form-control':'form-control-plaintext'" id="phone" formControlName="phone"   [readOnly]="!editMode"  type="text">
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="salary">salary</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" formControlName="salary"  id="salary" readonly type="text">
+          <input [ngClass]="(editMode==true)?'form-control':'form-control-plaintext'" formControlName="salary"  id="salary"  [readOnly]="!editMode"  type="text">
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="location">location</label>
         <div class="col-sm-10">
-          <input class="form-control-plaintext" formControlName="location"  id="location" readonly type="text">
+          <input [ngClass]="(editMode==true)?'form-control':'form-control-plaintext'" formControlName="location"  id="location"  [readOnly]="!editMode"  type="text">
         </div>
       </div>
 
@@ -66,7 +66,10 @@
 
   <div class="container container-fluid">
     <h5>
-      <button [routerLink]="['/']" class="btn btn-primary">Back</button>
+      <button (click)="updateEmployee()" *ngIf="editMode" class="btn btn-primary" style="margin-right: 10px">Update</button>
+      <button (click)="cancelUpdate()" *ngIf="editMode" class="btn btn-outline-danger" style="margin-right: 10px">Cancel</button>
+      <button (click)="editEmployee()" *ngIf="!editMode" class="btn btn-primary" style="margin-right: 10px">Edit</button>
+      <button routerLink="/employee/list" *ngIf="!editMode"class="btn btn-primary">Back</button>
     </h5>
   </div>
 </div>

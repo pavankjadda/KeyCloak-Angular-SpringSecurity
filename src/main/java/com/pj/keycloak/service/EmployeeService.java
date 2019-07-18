@@ -11,7 +11,7 @@ public interface EmployeeService
 
     Optional<Employee> findById(Long id);
 
-    void updateProfile(Employee employee);
+    Employee updateProfile(Employee employee);
 
     void saveAndFlush(Employee employee);
 

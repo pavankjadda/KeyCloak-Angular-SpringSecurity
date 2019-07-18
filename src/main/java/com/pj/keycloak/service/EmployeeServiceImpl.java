@@ -30,15 +30,9 @@ public class EmployeeServiceImpl implements EmployeeService
     }
 
     @Override
-    public void updateProfile(Employee employee)
+    public Employee updateProfile(Employee employee)
     {
-        employee.setFirstName("John2");
-        employee.setLastName("Doe2");
-        employee.setPhone("54541151515");
-        employee.setEmail("John@test.com");
-        employee.setLocation("Fairfax");
-
-        employeeRepository.saveAndFlush(employee);
+        return employeeRepository.saveAndFlush(employee);
     }
 
     @Override
