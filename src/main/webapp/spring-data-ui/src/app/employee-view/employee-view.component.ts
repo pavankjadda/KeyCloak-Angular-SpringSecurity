@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 import {Employee} from "src/app/employee-list/employee";
@@ -13,20 +13,22 @@ import {EmployeeService} from "src/app/employee-list/employee.service";
 export class EmployeeViewComponent implements OnInit
 {
   employee: Employee;
-  editMode: boolean;
+  editMode: boolean=false;
 
-  employeeForm = new FormGroup({
-    id: new FormControl({value: '', disabled: true}),
-    employeeId: new FormControl({value: '', disabled: true}),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    salary: new FormControl(''),
-    location: new FormControl(''),
+  employeeForm = this.formBuilder.group({
+    id: [{disabled: true}],
+    employeeId: [{ disabled: true}],
+    firstName: [''],
+    lastName: [''],
+    email: [''],
+    phone: [''],
+    salary: [''],
+    location: [''],
   });
 
+
   constructor(private employeeService:EmployeeService,
+              private formBuilder:FormBuilder,
               private activatedRoute:ActivatedRoute,
               private router:Router,
               private ngxSpinnerService:NgxSpinnerService)
@@ -34,13 +36,13 @@ export class EmployeeViewComponent implements OnInit
 
   ngOnInit()
   {
-    this.editMode=false;
     this.getEmployeeDetails();
   }
 
   private getEmployeeDetails()
   {
     let id=this.activatedRoute.snapshot.params.id;
+
     this.ngxSpinnerService.show();
     this.employeeService.getEmployeeById('http://localhost:8081/api/v1/employee/find/'+id).subscribe(
       data=>
@@ -58,6 +60,7 @@ export class EmployeeViewComponent implements OnInit
             location: data.location,
           });
         this.ngxSpinnerService.hide();
+        this.activatedRoute.snapshot.params.editMode=='true'?this.editMode=true:this.editMode=false;
       },
       error1 =>
       {
@@ -75,7 +78,7 @@ export class EmployeeViewComponent implements OnInit
   {
     this.ngxSpinnerService.show();
 
-    console.error(this.employeeForm.value);
+    console.info(this.employeeForm.value);
     let employee=this.employeeForm.value;
 
     this.employeeService.updateEmployee('http://localhost:8081/api/v1/employee/update', employee).subscribe(

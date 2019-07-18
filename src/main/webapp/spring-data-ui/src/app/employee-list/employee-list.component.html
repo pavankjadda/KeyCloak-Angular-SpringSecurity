@@ -19,7 +19,7 @@
     </thead>
     <tbody *ngFor="let employee of employees">
     <tr>
-      <td> <a routerLink="/employee/{{employee.id}}">{{employee.id}}</a></td>
+      <td> <a routerLink="/employee/{{employee.id}}"  [queryParams]="{editMode: false}">{{employee.id}}</a></td>
       <td>{{employee.employeeId}}</td>
       <td>{{employee.firstName}}</td>
       <td>{{employee.lastName}}</td>
@@ -38,7 +38,6 @@
   <div class="container container-fluid">
     <h5>
       <button (click)="createEmployee()" class="btn btn-primary"> Create</button>
-      <button (click)="updateEmployee()" class="btn btn-primary" style="margin-left: 20px"> Update</button>
     </h5>
   </div>
 

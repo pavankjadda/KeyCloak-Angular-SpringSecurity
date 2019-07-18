@@ -18,14 +18,24 @@ public class UserInfoUtil
 
     public String getPreferredUsername(HttpServletRequest httpServletRequest)
     {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        KeycloakPrincipal keycloakPrincipal= (KeycloakPrincipal) authentication.getPrincipal();
-        AccessToken accessToken=keycloakPrincipal.getKeycloakSecurityContext().getToken();
+        AccessToken accessToken=getAccessToken();
         /*
 
                 KeycloakAuthenticationToken keycloakAuthenticationToken= (KeycloakAuthenticationToken) httpServletRequest.getUserPrincipal();
                 logger.info("Subject: {}",keycloakAuthenticationToken.getAccount().getKeycloakSecurityContext().getToken().getSubject());
         */
         return accessToken.getPreferredUsername();
+    }
+    public String getUserGuid()
+    {
+        return getAccessToken().getSubject();
+    }
+
+
+    private AccessToken getAccessToken()
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        KeycloakPrincipal keycloakPrincipal= (KeycloakPrincipal) authentication.getPrincipal();
+        return keycloakPrincipal.getKeycloakSecurityContext().getToken();
     }
 }

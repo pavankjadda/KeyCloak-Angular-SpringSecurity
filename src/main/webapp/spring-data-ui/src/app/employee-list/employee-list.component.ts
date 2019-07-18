@@ -41,21 +41,6 @@ export class EmployeeListComponent implements OnInit
     );
   }
 
-  updateEmployee()
-  {
-    this.ngxSpinnerService.show();
-    this.employeeService.updateEmployee('http://localhost:8081/api/v1/employee/update/1001').subscribe(
-      data=>
-      {
-        this.employees=data;
-        this.ngxSpinnerService.hide();
-      },
-      error1 =>
-      {
-        this.ngxSpinnerService.hide();
-      }
-    );
-  }
 
   logout()
   {
@@ -104,6 +89,7 @@ export class EmployeeListComponent implements OnInit
 
   editEmployee(id: number)
   {
-    
+    this.router.navigate(["/employee/" + id, { editMode: true }
+    ]);
   }
 }
