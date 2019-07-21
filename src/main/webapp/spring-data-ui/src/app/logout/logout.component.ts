@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {AuthService} from "src/app/login/auth.service";
 import {KeycloakService} from "../keycloak/keycloak.service";
 
 @Component({
@@ -8,11 +9,13 @@ import {KeycloakService} from "../keycloak/keycloak.service";
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private keycloakService:KeycloakService) { }
+  constructor(private keycloakService:KeycloakService,
+              private authService:AuthService) { }
 
   ngOnInit()
   {
-    this.keycloakService.logout();
+    //this.keycloakService.logout();
+    this.authService.logout();
   }
 
 }

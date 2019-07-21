@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 import {AuthService} from "src/app/login/auth.service";
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,10 +27,10 @@ export class LoginComponent implements OnInit
   )
   {
     // redirect to home if already logged in
-    if(this.authService.currentUserValue)
+  /*  if(this.authService.currentUserValue)
     {
-      this.router.navigate( ['/home'] );
-    }
+      this.router.navigate( ['/'] );
+    }*/
   }
 
 
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit
       {
         if (response["access_token"])
         {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
 
           //login successful if there's a Spring Session token in the response
           if (response && response["access_token"])
@@ -73,7 +74,7 @@ export class LoginComponent implements OnInit
             localStorage.setItem("scope", response["scope"]);
             localStorage.setItem("isLoggedIn", "true");
 
-            this.getUserInfoUsingOAuth2Token(response["access_token"]);
+            this.getUserInfoUsingOAuth2Token();
           }
         }
         else
@@ -104,12 +105,12 @@ export class LoginComponent implements OnInit
     this.message='Logged '+(AuthService.isUserLoggedIn() ? 'in' : 'out');
   }
 
-  private getUserInfoUsingOAuth2Token(accessToken)
+  private getUserInfoUsingOAuth2Token()
   {
-    this.authService.getUserInfoUsingOAuth2Token(accessToken).subscribe(
+    this.authService.getUserInfoUsingOAuth2Token().subscribe(
       userObject =>
       {
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/"]);
         console.log("userObject" + userObject);
       },
       error =>

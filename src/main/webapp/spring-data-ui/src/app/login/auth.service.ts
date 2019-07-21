@@ -6,6 +6,7 @@ import {
   OAUTH2_ACCESS_TOKEN_URI,
   OAUTH2_CLIENT_ID,
   OAUTH2_CLIENT_SECRET,
+  OAUTH2_LOGOUT_URI,
   OAUTH2_USER_INFO_URI
 } from "src/app/app-constants";
 import {User} from "src/app/login/model/user";
@@ -56,16 +57,10 @@ export class AuthService
     return this.httpClient.post<any>(OAUTH2_ACCESS_TOKEN_URI, body.toString(), httpOptions);
   }
 
-  getUserInfoUsingOAuth2Token(accessToken: any)
+  getUserInfoUsingOAuth2Token()
   {
-    const httpOptions = {
-      headers: new HttpHeaders(
-        {
-          "Content-Type": "application/x-www-form-urlencoded",
-          authorization: "Bearer " + accessToken
-        })
-    };
-    return this.httpClient.get<any>(OAUTH2_USER_INFO_URI, httpOptions)
+
+    return this.httpClient.get<any>(OAUTH2_USER_INFO_URI)
                .pipe(map(user =>
                {
                  if (user)
@@ -80,14 +75,20 @@ export class AuthService
 
   logout()
   {
-    localStorage.setItem("access_token", null);
-    localStorage.setItem("refresh_token", null);
-    localStorage.setItem("token_type", null);
-    localStorage.setItem("scope", null);
+    return this.httpClient.get<any>(OAUTH2_LOGOUT_URI)
+      .subscribe(
+        data=>
+        {
+          localStorage.setItem("access_token", null);
+          localStorage.setItem("refresh_token", null);
+          localStorage.setItem("token_type", null);
+          localStorage.setItem("scope", null);
 
-    localStorage.removeItem( 'currentUser' );
-    this.currentUserSubject.next( null );
-    localStorage.setItem( 'isLoggedIn', 'false' );
+          localStorage.removeItem( 'currentUser' );
+          this.currentUserSubject.next( null );
+          localStorage.setItem( 'isLoggedIn', 'false' );
+        }
+      );
   }
 
 }
