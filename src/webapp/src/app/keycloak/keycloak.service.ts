@@ -27,7 +27,7 @@ export class KeycloakService
       this.keycloakAuth.init({onLoad: 'login-required'})
           .success(() =>
           {
-            resolve();
+
           })
           .error(() =>
           {
