@@ -1,6 +1,6 @@
 {
   "name": "keycloak-angular-ui",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,13 +19,13 @@
     "@angular/platform-browser": "~12.1.2",
     "@angular/platform-browser-dynamic": "~12.1.2",
     "@angular/router": "~12.1.2",
-    "bootstrap": "^4.5.2",
-    "jquery": "^3.5.1",
-    "keycloak-js": "^11.0.2",
-    "ngx-spinner": "^10.0.1",
+    "bootstrap": "^5.0.2",
+    "jquery": "^3.6.0",
+    "keycloak-js": "^14.0.0",
+    "ngx-spinner": "^12.0.0",
     "popper.js": "^1.16.1",
-    "rxjs": "~6.6.3",
-    "tslib": "^2.0.0",
+    "rxjs": "~7.2.0",
+    "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
