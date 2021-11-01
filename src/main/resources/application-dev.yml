@@ -19,9 +19,9 @@ spring:
 
   # Jpa Properties
   datasource:
-    url: jdbc:mysql://localhost:3306/keycloak-springsecurity?serverTimezone=UTC
+    url: jdbc:mysql://localhost:33061/keycloak-springsecurity?serverTimezone=UTC
     username: root
-    password: bcmc1234
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:

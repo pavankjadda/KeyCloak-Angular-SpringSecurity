@@ -3,52 +3,34 @@ package com.pj.keycloak.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 
 @Entity
 @Table(name = "employee")
 @Data
-public class Employee extends UserProfile implements Serializable
+public class Employee implements Serializable
 {
-    private static final long serialVersionUID = -2482579485413606056L;
+	private static final long serialVersionUID = -2482579485413606056L;
 
-    @Column(name = "employee_id")
-    private Long employeeId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "location")
-    private String location;
+	@Column(name = "first_name")
+	private String firstName;
 
-    @Column(name = "salary")
-    private Double salary;
+	@Column(name = "last_name")
+	private String lastName;
 
-    @ManyToMany
-    @JoinTable(name = "employee_project",
-            joinColumns = @JoinColumn(name = "employee_id",referencedColumnName = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"))
-    private Set<Project> projects=new HashSet<>();
+	@Column(name = "email")
+	private String email;
 
-
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        if (!super.equals(o))
-            return false;
-        Employee employee = (Employee) o;
-        return getEmployeeId().equals(employee.getEmployeeId());
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(super.hashCode(), getEmployeeId());
-    }
+	@Column(name = "phone")
+	private String phone;
 }

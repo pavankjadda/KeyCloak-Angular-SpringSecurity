@@ -7,20 +7,25 @@ import {LogoutComponent} from "./logout/logout.component";
 
 const routes: Routes = [
   {
-    path: 'employee/list',
+    path: "",
+    redirectTo: "employee/list",
+    pathMatch: "full"
+  },
+  {
+    path: "employee/list",
     component: EmployeeListComponent
   },
   {
-    path: 'employee/:id',
+    path: "employee/:id",
     component: EmployeeViewComponent
   },
   {
-    path: 'employee_project/list',
+    path: "employee_project/list",
     component: EmployeeProjectComponent
   },
   {
-    path: 'logout',
-    component:LogoutComponent
+    path: "logout",
+    component: LogoutComponent
   },
 ];
 
@@ -28,6 +33,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
+export class AppRoutingModule
+{
 
 }
