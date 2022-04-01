@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.pj</groupId>
     <artifactId>keycloak</artifactId>
-    <version>4.0.0</version>
+    <version>5.0.0</version>
     <name>KeyCloak-Angular-SpringSecurity</name>
     <description>Demo project for KeyCloak and Spring Security</description>
 
