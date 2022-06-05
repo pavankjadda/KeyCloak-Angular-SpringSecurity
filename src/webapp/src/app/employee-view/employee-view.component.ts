@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder} from "@angular/forms";
+import {UntypedFormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 import {Employee} from "src/app/employee-list/employee";
@@ -28,7 +28,7 @@ export class EmployeeViewComponent implements OnInit
 
 
   constructor(private employeeService:EmployeeService,
-              private formBuilder:FormBuilder,
+              private formBuilder:UntypedFormBuilder,
               private activatedRoute:ActivatedRoute,
               private router:Router,
               private ngxSpinnerService:NgxSpinnerService)

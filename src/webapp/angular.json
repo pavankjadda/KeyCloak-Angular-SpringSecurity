@@ -113,6 +113,6 @@
           }
         }
       }
-    }},
-  "defaultProject": "spring-data-ui"
+    }
+  }
 }
