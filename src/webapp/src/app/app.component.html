@@ -1,19 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center" class="container container-fluid">
-  <h1>
-    Welcome to {{ title }}
-  </h1>
-  <br/> <br/>
- <h2>
-   <a [routerLink]="['/employee/list']">Employees</a> <br/> <br/>
-   <a [routerLink]="['/employee_project/list']">Employee Projects</a>
- </h2>
+<div class="container container-fluid" style="text-align: center">
+	<h1>Welcome to {{ title }}</h1>
+	<br />
+	<br />
+	<h2>
+		<a [routerLink]="['/employee/list']">Employees</a> <br />
+		<br />
+		<a [routerLink]="['/employee_project/list']">Employee Projects</a>
+	</h2>
 </div>
 
 <router-outlet></router-outlet>
 
-
-<br/> <br/>
+<br />
+<br />
 <div class="container container-fluid">
-  <h5><a [routerLink]="['/logout']">Logout</a></h5>
+	<h5><a [routerLink]="['/logout']">Logout</a></h5>
 </div>
