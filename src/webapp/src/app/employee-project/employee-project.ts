@@ -1,14 +1,13 @@
-export class EmployeeProject
-{
-  employeeId:number;
+export class EmployeeProject {
+	employeeId: number;
 
-  firstName:string;
+	firstName: string;
 
-  lastName:string;
+	lastName: string;
 
-  salary:string;
+	salary: string;
 
-  projectLocation:string;
+	projectLocation: string;
 
-  projectName:string;
+	projectName: string;
 }

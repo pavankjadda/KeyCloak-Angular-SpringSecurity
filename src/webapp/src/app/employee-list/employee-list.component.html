@@ -1,50 +1,51 @@
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" color="#fff" size="medium" type="ball-scale-multiple">
-  <p style="font-size: 20px; color: white">Loading...</p>
+	<p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 
 <div class="container container-fluid">
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">EmployeeId</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Salary</th>
-      <th scope="col">Location</th>
-      <th scope="col">Actions</th>
-    </tr>
-    </thead>
-    <tbody *ngFor="let employee of employees">
-    <tr>
-      <td> <a routerLink="/employee/{{employee.id}}"  [queryParams]="{editMode: false}">{{employee.id}}</a></td>
-      <td>{{employee.employeeId}}</td>
-      <td>{{employee.firstName}}</td>
-      <td>{{employee.lastName}}</td>
-      <td>{{employee.email}}</td>
-      <td>{{employee.phone}}</td>
-      <td>${{employee.salary}}</td>
-      <td>{{employee.location}}</td>
-      <td>
-        <button (click)="editEmployee(employee.id)" class="btn btn-primary" style="margin-right: 10px">Edit</button>
-        <button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <br/>
-  <div class="container container-fluid">
-    <h5>
-      <button (click)="createEmployee()" class="btn btn-primary"> Create</button>
-    </h5>
-  </div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">EmployeeId</th>
+				<th scope="col">First Name</th>
+				<th scope="col">Last Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">Phone</th>
+				<th scope="col">Salary</th>
+				<th scope="col">Location</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody *ngFor="let employee of employees">
+			<tr>
+				<td>
+					<a [queryParams]="{ editMode: false }" routerLink="/employee/{{ employee.id }}">{{ employee.id }}</a>
+				</td>
+				<td>{{ employee.employeeId }}</td>
+				<td>{{ employee.firstName }}</td>
+				<td>{{ employee.lastName }}</td>
+				<td>{{ employee.email }}</td>
+				<td>{{ employee.phone }}</td>
+				<td>${{ employee.salary }}</td>
+				<td>{{ employee.location }}</td>
+				<td>
+					<button (click)="editEmployee(employee.id)" class="btn btn-primary" style="margin-right: 10px">Edit</button>
+					<button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<div class="container container-fluid">
+		<h5>
+			<button (click)="createEmployee()" class="btn btn-primary">Create</button>
+		</h5>
+	</div>
 
-  <div class="container container-fluid">
-    <h5>
-      <button [routerLink]="['/']" class="btn btn-primary">Back</button>
-    </h5>
-  </div>
+	<div class="container container-fluid">
+		<h5>
+			<button [routerLink]="['/']" class="btn btn-primary">Back</button>
+		</h5>
+	</div>
 </div>
-

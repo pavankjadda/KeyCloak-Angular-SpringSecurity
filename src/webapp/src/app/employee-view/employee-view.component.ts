@@ -1,115 +1,102 @@
-import {Component, OnInit} from "@angular/core";
-import {UntypedFormBuilder} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {NgxSpinnerService} from "ngx-spinner";
-import {Employee} from "src/app/employee-list/employee";
-import {EmployeeService} from "src/app/employee-list/employee.service";
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Employee } from 'src/app/employee-list/employee';
+import { EmployeeService } from 'src/app/employee-list/employee.service';
 
 @Component({
-  selector: 'app-employee-view',
-  templateUrl: './employee-view.component.html',
-  styleUrls: ['./employee-view.component.css']
+	selector: 'app-employee-view',
+	templateUrl: './employee-view.component.html',
+	styleUrls: ['./employee-view.component.css'],
 })
-export class EmployeeViewComponent implements OnInit
-{
-  employee: Employee;
-  editMode: boolean=false;
+export class EmployeeViewComponent implements OnInit {
+	employee: Employee;
+	editMode: boolean = false;
 
-  employeeForm = this.formBuilder.group({
-    id: [{disabled: true}],
-    employeeId: [{ disabled: true}],
-    firstName: [''],
-    lastName: [''],
-    email: [''],
-    phone: [''],
-    salary: [''],
-    location: [''],
-  });
+	employeeForm = this.formBuilder.group({
+		id: [{ disabled: true }],
+		employeeId: [{ disabled: true }],
+		firstName: [''],
+		lastName: [''],
+		email: [''],
+		phone: [''],
+		salary: [''],
+		location: [''],
+	});
 
+	constructor(
+		private employeeService: EmployeeService,
+		private formBuilder: UntypedFormBuilder,
+		private activatedRoute: ActivatedRoute,
+		private router: Router,
+		private ngxSpinnerService: NgxSpinnerService
+	) {}
 
-  constructor(private employeeService:EmployeeService,
-              private formBuilder:UntypedFormBuilder,
-              private activatedRoute:ActivatedRoute,
-              private router:Router,
-              private ngxSpinnerService:NgxSpinnerService)
-  { }
+	ngOnInit() {
+		this.getEmployeeDetails();
+	}
 
-  ngOnInit()
-  {
-    this.getEmployeeDetails();
-  }
+	editEmployee() {
+		this.editMode = true;
+	}
 
-  private getEmployeeDetails()
-  {
-    let id=this.activatedRoute.snapshot.params.id;
+	updateEmployee() {
+		this.ngxSpinnerService.show();
 
-    this.ngxSpinnerService.show();
-    this.employeeService.getEmployeeById('http://localhost:8081/api/v1/employee/find/'+id).subscribe(
-      data=>
-      {
-        this.employee=data;
-        this.employeeForm.patchValue(
-          {
-            id: data.id,
-            employeeId: data.employeeId,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            phone: data.phone,
-            salary: data.salary,
-            location: data.location,
-          });
-        this.ngxSpinnerService.hide();
-        this.activatedRoute.snapshot.params.editMode=='true'?this.editMode=true:this.editMode=false;
-      },
-      error1 =>
-      {
-        this.ngxSpinnerService.hide();
-      }
-    );
-  }
+		console.info(this.employeeForm.value);
+		let employee = this.employeeForm.value;
 
-  editEmployee()
-  {
-    this.editMode=true;
-  }
+		this.employeeService.updateEmployee('http://localhost:8081/api/v1/employee/update', employee).subscribe(
+			(data) => {
+				this.employee = data;
+				this.employeeForm.patchValue({
+					id: data.id,
+					employeeId: data.employeeId,
+					firstName: data.firstName,
+					lastName: data.lastName,
+					email: data.email,
+					phone: data.phone,
+					salary: data.salary,
+					location: data.location,
+				});
+				this.editMode = false;
 
-  updateEmployee()
-  {
-    this.ngxSpinnerService.show();
+				this.ngxSpinnerService.hide();
+			},
+			(error1) => {
+				this.ngxSpinnerService.hide();
+			}
+		);
+	}
 
-    console.info(this.employeeForm.value);
-    let employee=this.employeeForm.value;
+	cancelUpdate() {
+		this.editMode = false;
+	}
 
-    this.employeeService.updateEmployee('http://localhost:8081/api/v1/employee/update', employee).subscribe(
-      data=>
-      {
-        this.employee=data;
-        this.employeeForm.patchValue(
-          {
-            id: data.id,
-            employeeId: data.employeeId,
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            phone: data.phone,
-            salary: data.salary,
-            location: data.location,
-          });
-        this.editMode=false;
+	private getEmployeeDetails() {
+		let id = this.activatedRoute.snapshot.params.id;
 
-        this.ngxSpinnerService.hide();
-      },
-      error1 =>
-      {
-        this.ngxSpinnerService.hide();
-      }
-    );
-
-  }
-
-  cancelUpdate()
-  {
-    this.editMode=false;
-  }
+		this.ngxSpinnerService.show();
+		this.employeeService.getEmployeeById('http://localhost:8081/api/v1/employee/find/' + id).subscribe(
+			(data) => {
+				this.employee = data;
+				this.employeeForm.patchValue({
+					id: data.id,
+					employeeId: data.employeeId,
+					firstName: data.firstName,
+					lastName: data.lastName,
+					email: data.email,
+					phone: data.phone,
+					salary: data.salary,
+					location: data.location,
+				});
+				this.ngxSpinnerService.hide();
+				this.activatedRoute.snapshot.params.editMode == 'true' ? (this.editMode = true) : (this.editMode = false);
+			},
+			(error1) => {
+				this.ngxSpinnerService.hide();
+			}
+		);
+	}
 }

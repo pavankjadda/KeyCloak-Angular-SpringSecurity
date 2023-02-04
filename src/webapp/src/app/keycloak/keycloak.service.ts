@@ -1,53 +1,37 @@
-import {Injectable} from "@angular/core";
-import * as Keycloak from "keycloak-js";
-import {KeycloakInstance} from "keycloak-js";
+import { Injectable } from '@angular/core';
+import Keycloak from 'keycloak-js';
 
 @Injectable({
-  providedIn: "root"
+	providedIn: 'root',
 })
-export class KeycloakService
-{
-  private keycloakAuth: KeycloakInstance;
+export class KeycloakService {
+	keycloak = new Keycloak({
+		url: 'http://localhost:8080/auth',
+		realm: 'keycloakdemo',
+		clientId: 'angular-app',
+	});
 
-  constructor()
-  {
-  }
+	init(): Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.keycloak
+				.init({ onLoad: 'login-required' })
+				.then(() => {})
+				.catch(() => {
+					reject();
+				});
+		});
+	}
 
-  init(): Promise<any>
-  {
-    return new Promise((resolve, reject) =>
-    {
-      const config = {
-        "url": "http://localhost:8080/auth",
-        "realm": "keycloakdemo",
-        "clientId": "angular-app"
-      };
-      // @ts-ignore
-      this.keycloakAuth = new Keycloak(config);
-      this.keycloakAuth.init({onLoad: "login-required"})
-          .then(() =>
-          {
+	getToken(): string {
+		return this.keycloak.token;
+	}
 
-          })
-          .catch(() =>
-          {
-            reject();
-          });
-    });
-  }
-
-  getToken(): string
-  {
-    return this.keycloakAuth.token;
-  }
-
-  logout()
-  {
-    const options = {
-      "redirectUri": "http://localhost:4200",
-      "realm": "keycloakdemo",
-      "clientId": "angular-app"
-    };
-    this.keycloakAuth.logout(options);
-  }
+	logout() {
+		const options = {
+			redirectUri: 'http://localhost:4200',
+			realm: 'keycloakdemo',
+			clientId: 'angular-app',
+		};
+		this.keycloak.logout(options);
+	}
 }

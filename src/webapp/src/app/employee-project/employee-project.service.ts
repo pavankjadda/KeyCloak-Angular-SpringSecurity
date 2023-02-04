@@ -1,16 +1,14 @@
-import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
-import {EmployeeProject} from "./employee-project";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { EmployeeProject } from './employee-project';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
-export class EmployeeProjectService
-{
-  constructor(private httpClient:HttpClient) { }
+export class EmployeeProjectService {
+	constructor(private httpClient: HttpClient) {}
 
-  getEmployeeProjects(url:string)
-  {
-    return this.httpClient.get<EmployeeProject[]>(url);
-  }
+	getEmployeeProjects(url: string) {
+		return this.httpClient.get<EmployeeProject[]>(url);
+	}
 }
